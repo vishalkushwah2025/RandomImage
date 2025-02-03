@@ -1,11 +1,7 @@
 function random() {
-    var arr = ["https://cdn.pixabay.com/photo/2015/10/01/19/05/car-967470_960_720.png",
-        "https://cdn.pixabay.com/photo/2015/10/27/08/51/autumn-1008520_960_720.png",
-        "https://cdn.pixabay.com/photo/2017/06/04/23/57/stem-2372543_960_720.png",
-        "https://cdn.pixabay.com/photo/2016/04/20/21/19/png-1342119_960_720.png",
-        "https://cdn.pixabay.com/photo/2024/03/21/23/06/created-by-ai-8648630_960_720.png"
+    var arr = [
+        "images/PngItem_475588.png", "images/PngItem_1117187.png", "images/PngItem_1117201.png", "images/PngItem_1117226.png", "images/PngItem_1117318.png", "images/PngItem_1619546.png", "images/PngItem_1949819.png", "images/PngItem_4785654.png", "images/PngItem_5367907 - Copy.png"
     ];
-    
     
     let imgRandom = arr[Math.floor(Math.random() * arr.length)];
     var randomX = Math.random() * 100;
@@ -13,19 +9,26 @@ function random() {
     var rotate = Math.floor(Math.random() * 360);
     return { randomX, randomY, rotate, imgRandom };
 }
-
+var main = document.querySelector("#main");
 
 var btn = document.querySelector("button");
 btn.addEventListener("click", function () {
     var { randomX, randomY, rotate, imgRandom } = random();
     var img = document.createElement("img");
     img.src = imgRandom;
-    img.style.height = "100px";
+    img.style.height = "200px";
     img.style.left = randomX + "%";
     img.style.top = randomY + "%";
     img.style.rotate = rotate + "deg";
     img.style.position = "absolute";
-    document.body.appendChild(img);
+    img.style.opacity = "0";
+    img.style.transform = "scale(0.5)";
+    img.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+    
+    main.appendChild(img);
+    
+    setTimeout(() => {
+        img.style.opacity = "1";
+        img.style.transform = "scale(1)";
+    }, 10);
 });
-
-
